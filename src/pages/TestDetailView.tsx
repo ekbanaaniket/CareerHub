@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ArrowLeft, Users, HelpCircle, CheckCircle2, XCircle } from "lucide-react";
+import { ArrowLeft, Users, CircleHelp as HelpCircle, CircleCheck as CheckCircle2, Circle as XCircle } from "lucide-react";
 
 export default function TestDetailView() {
   const { id } = useParams<{ id: string }>();

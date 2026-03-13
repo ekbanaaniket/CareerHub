@@ -7,7 +7,7 @@ import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, Search, Filter, Mail, Phone, Edit, Trash2, Eye, UserCheck, GraduationCap } from "lucide-react";
+import { Plus, Search, Filter, Mail, Phone, CreditCard as Edit, Trash2, Eye, UserCheck, GraduationCap } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
