@@ -7,7 +7,7 @@ import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Plus, Search, Filter, Mail, Phone, CreditCard as Edit, Trash2, Eye, UserCheck, GraduationCap } from "lucide-react";
+import { Plus, Search, Filter, Mail, Phone, Edit, Trash2, Eye, UserCheck, GraduationCap } from "lucide-react";
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -127,38 +127,12 @@ export default function Students() {
           <td className="px-4 py-3"><div className="flex items-center gap-2"><div className="w-20 h-2 rounded-full bg-secondary overflow-hidden"><div className="h-full rounded-full gradient-primary transition-all" style={{ width: `${s.progress}%` }} /></div><span className="text-xs font-medium">{s.progress}%</span></div></td>
           <td className="px-4 py-3"><StatusBadge variant={s.status === "active" ? "success" : s.status === "inactive" ? "warning" : "destructive"}>{s.status}</StatusBadge></td>
           <td className="px-4 py-3 text-sm text-muted-foreground">{s.joinDate}</td>
-          <td className="px-4 py-3 flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => navigate(`/students/${s.id}`)}
-              className="w-8 h-8 p-0"
-              title="View student details"
-            >
-              <Eye className="w-4 h-4" />
-            </Button>
-            {canEdit && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleEdit(s)}
-                className="w-8 h-8 p-0"
-                title="Edit student"
-              >
-                <Edit className="w-4 h-4" />
-              </Button>
-            )}
-            {canDelete && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setDeleteConfirm(s.id)}
-                className="w-8 h-8 p-0 text-red-600 hover:text-red-700 hover:bg-red-50"
-                title="Delete student"
-              >
-                <Trash2 className="w-4 h-4" />
-              </Button>
-            )}
+          <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
+            <ActionMenu actions={[
+              { label: "View Details", icon: Eye, onClick: () => navigate(`/students/${s.id}`) },
+              ...(canEdit ? [{ label: "Edit", icon: Edit, onClick: () => handleEdit(s) }, { label: s.status === "active" ? "Deactivate" : "Activate", icon: UserCheck, onClick: () => handleToggleStatus(s), separator: true }] : []),
+              ...(canDelete ? [{ label: "Delete", icon: Trash2, onClick: () => setDeleteConfirm(s.id), variant: "destructive" as const, separator: true }] : []),
+            ]} />
           </td>
         </tr>
       ))}
